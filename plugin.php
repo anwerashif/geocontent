@@ -30,6 +30,13 @@ function my_pre_get_posts( $query ) {
         if( isset($query->query_vars['post_type']) && $query->query_vars['post_type'] == 'post' ) {
             $query->set( 'cat', $cat_id );
         }
+	
+	// Exclude Nav Menu
+	/* if ($query->get('post_type') == 'nav_menu_item') {
+            return $query;
+        } else {
+            $query->set( 'cat', $cat_id );
+        } */
 
     } else {
         //one of the conditions failed - So do nothing new
