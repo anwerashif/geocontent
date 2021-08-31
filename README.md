@@ -1,6 +1,6 @@
 # GeoContent
 
-It is a WordPress plugin works with [Geolocation IP Detection](https://wordpress.org/plugins/geoip-detect/). Using this plugin you can show content country based.
+It is a WordPress plugin works with [Geolocation IP Detection](https://wordpress.org/plugins/geoip-detect/) and [TranslatePress](https://wordpress.org/plugins/translatepress-multilingual/) in addition. Using this plugin you can show content country based and redirect them to language page/post.
 
 ## How it Works
 
@@ -15,6 +15,7 @@ or article in this category will only show in Bangladeshi visitors.
 
 ## Features
 * Works with any post loop
+* Redirect user to their language page/post i.e www.domain.com/en/ to www.domain.com/fr/
 
 ## Licensing
 
