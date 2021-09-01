@@ -20,6 +20,9 @@ function my_pre_get_posts( $query ) {
     $geoip  = geoip_detect2_get_info_from_current_ip();
     $name   = $geoip->raw['country']['names']['en'];
     $myterm = get_term_by('name', $name, 'category');
+    $cat_name = $myterm->name;
+
+    // echo $cat_name;
 
     if( $name == $myterm->name  ){
         $cat_id = $myterm->term_id;
@@ -33,8 +36,10 @@ function my_pre_get_posts( $query ) {
 
         if ($query->get('post_type') == 'nav_menu_item') {
             return $query;
+        } elseif( isset($query->query_vars['post_type']) && $query->query_vars['post_type'] == 'post') {
+            $query->set( 'category__and', $cat_id );
         } else {
-            $query->set( 'cat', $cat_id );
+            return $query;
         }
 
     } else {
@@ -44,9 +49,11 @@ function my_pre_get_posts( $query ) {
 	
 	// return
 	return $query;
+	// return $content;
 
 }
 
+// add_action('the_content', 'my_pre_get_posts');
 add_action('pre_get_posts', 'my_pre_get_posts');
 
 /* 
