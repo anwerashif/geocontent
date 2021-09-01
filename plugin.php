@@ -57,7 +57,7 @@ function redirect_page_en() {
     $geoip = geoip_detect2_get_info_from_current_ip();
     $name = $geoip->raw['country']['names']['en'];
 
-    if( $name == "United States" && strpos($_SERVER['REQUEST_URI'], "en") == false ) {
+    if( !is_user_logged_in() && $name == "United States" && strpos($_SERVER['REQUEST_URI'], "en") == false ) {
 
         // unset cookies
         if (isset($_SERVER['HTTP_COOKIE'])) {
@@ -83,9 +83,11 @@ function redirect_page_en() {
         // print out the link
         $furl = site_url($newUri);
 
-        // wp_redirect( $furl );
-        wp_safe_redirect( $furl );
-        exit;
+        if(!is_admin() && !current_user_can('administrator')){
+            // wp_redirect( $furl );
+            wp_safe_redirect( $furl );
+            exit;
+        }
 
     }
 
@@ -101,7 +103,7 @@ function redirect_page_fr() {
     $geoip = geoip_detect2_get_info_from_current_ip();
     $name = $geoip->raw['country']['names']['en'];
 
-    if( $name == "France" && strpos($_SERVER['REQUEST_URI'], "fr") == false ) {
+    if( !is_user_logged_in() && $name == "France" && strpos($_SERVER['REQUEST_URI'], "fr") == false ) {
 
         // unset cookies
         if (isset($_SERVER['HTTP_COOKIE'])) {
@@ -127,8 +129,11 @@ function redirect_page_fr() {
         // print out the link
         $furl = site_url($newUri);
 
-        wp_redirect( $furl );
-        exit;
+        if(!is_admin() && !current_user_can('administrator')){
+            // wp_redirect( $furl );
+            wp_safe_redirect( $furl );
+            exit;
+        }
 
     }
 
@@ -144,7 +149,7 @@ function redirect_page_bn() {
     $geoip = geoip_detect2_get_info_from_current_ip();
     $name = $geoip->raw['country']['names']['en'];
 
-    if( $name == "Bangladesh" && strpos($_SERVER['REQUEST_URI'], "bn") == false ) {
+    if( !is_user_logged_in() && $name == "Bangladesh" && strpos($_SERVER['REQUEST_URI'], "bn") == false ) {
 
         // unset cookies
         if (isset($_SERVER['HTTP_COOKIE'])) {
@@ -170,8 +175,11 @@ function redirect_page_bn() {
         // print out the link
         $furl = site_url($newUri);
 
-        wp_redirect( $furl );
-        exit;
+        if(!is_admin() && !current_user_can('administrator')){
+            // wp_redirect( $furl );
+            wp_safe_redirect( $furl );
+            exit;
+        }
 
     }
 
